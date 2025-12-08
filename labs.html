@@ -4,47 +4,63 @@
   <meta charset="UTF-8" />
   <title>AliTechGrid Labs – AWS · Python · AI Cloud</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Hands-on labs for AliTechGrid: Python programming, AWS cloud engineering, serverless, automation and AI workloads.">
+  <meta
+    name="description"
+    content="Hands-on labs for AWS, Python and AI Cloud – structured 10-lab pack for students and instructors."
+  />
 
   <style>
     :root {
       --bg: #020617;
-      --bg-alt: #020818;
-      --card: #020819;
-      --accent: #38bdf8;
-      --accent-2: #22c55e;
+      --bg-alt: #020b1e;
+      --card: #020b1e;
+      --accent: #22c55e;
+      --accent-soft: #0f766e;
+      --accent-alt: #38bdf8;
       --text: #e5e7eb;
       --muted: #9ca3af;
-      --border: #111827;
+      --border: #1f2937;
+      --danger: #f97373;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #0b1120, #020617 50%, #000 100%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #020617 30%, #000 100%);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a {
+      color: var(--accent-alt);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
 
     .page {
-      max-width: 1120px;
+      max-width: 1160px;
       margin: 0 auto;
-      padding: 20px 16px 60px;
+      padding: 24px 16px 64px;
     }
 
-    /* HEADER */
+    /* HEADER / NAV */
 
     header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 8px 0 18px;
-      border-bottom: 1px solid rgba(15,23,42,0.9);
-      margin-bottom: 24px;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
     }
 
     .logo {
@@ -57,144 +73,200 @@
       width: 34px;
       height: 34px;
       border-radius: 12px;
-      background: radial-gradient(circle at 30% 20%, #22c55e, #0ea5e9);
+      background: linear-gradient(135deg, #22c55e, #38bdf8);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
+      color: #020617;
+      font-weight: 700;
       font-size: 18px;
-      box-shadow: 0 0 18px rgba(56,189,248,0.7);
     }
 
-    .logo-text-main { font-weight: 700; font-size: 17px; }
-    .logo-text-sub  { font-size: 11px; color: var(--muted); }
+    .logo-text-main {
+      font-weight: 600;
+    }
 
-    nav {
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    nav.nav-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+      gap: 18px;
       font-size: 14px;
     }
 
-    nav a { color: var(--muted); }
-    nav a.active { color: var(--accent); font-weight: 600; }
+    nav.nav-links a {
+      color: var(--muted);
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.nav-links a:hover {
+      color: var(--text);
+      border-bottom-color: var(--accent-alt);
+    }
 
     /* HERO */
 
     .pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 4px 11px;
+      gap: 8px;
+      padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(56,189,248,0.5);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
       font-size: 11px;
-      color: var(--accent);
-      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 16px;
     }
 
     .pill-dot {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 999px;
-      background: radial-gradient(circle, #22c55e, #22c55e 45%, transparent 100%);
+      background: var(--accent);
     }
 
-    h1 {
-      font-size: clamp(28px, 3.5vw, 34px);
-      font-weight: 800;
-      margin: 14px 0 8px;
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.8fr);
+      gap: 28px;
+      margin-bottom: 32px;
     }
 
-    h1 span {
-      background: linear-gradient(120deg, #38bdf8, #22c55e);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .hero-title {
+      font-size: 32px;
+      font-weight: 650;
+      margin-bottom: 10px;
     }
 
-    .subtitle {
-      max-width: 760px;
+    .hero-title span {
+      color: var(--accent-alt);
+    }
+
+    .hero-subtitle {
       color: var(--muted);
-      margin-bottom: 20px;
       font-size: 14px;
+      max-width: 620px;
+      margin-bottom: 18px;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
     .btn {
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      border: 1px solid rgba(148,163,184,0.35);
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 13px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #0ea5e9, #22c55e);
-      border: none;
-      color: #0f172a;
+      background: linear-gradient(135deg, #22c55e, #38bdf8);
+      color: #020617;
       font-weight: 600;
+      box-shadow: 0 10px 40px rgba(34, 197, 94, 0.25);
     }
 
-    .btn small {
+    .btn-outline {
+      background: transparent;
+      border-color: rgba(148, 163, 184, 0.6);
+      color: var(--text);
+    }
+
+    .hero-card {
+      border-radius: 20px;
+      padding: 18px 18px 16px;
+      background: radial-gradient(circle at top left, #1e293b 0, #020617 60%);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.8);
+      font-size: 13px;
+    }
+
+    .hero-card h3 {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       font-size: 11px;
-      opacity: 0.85;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
     }
 
     /* SECTIONS */
 
-    section { margin-bottom: 30px; }
-
-    .section-header { margin-bottom: 10px; }
+    section {
+      margin-bottom: 32px;
+    }
 
     .section-title {
       font-size: 18px;
       font-weight: 600;
+      margin-bottom: 10px;
     }
 
     .section-sub {
       font-size: 13px;
       color: var(--muted);
+      margin-bottom: 14px;
     }
 
-    .card {
-      background: rgba(15,23,42,0.96);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 14px 16px 16px;
-      font-size: 13px;
-    }
-
-    .grid-2 {
+    .card-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
     }
 
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-      font-size: 11px;
+    .card {
+      background: var(--bg-alt);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 16px 18px;
+      font-size: 13px;
     }
 
-    .badge {
-      border-radius: 999px;
-      padding: 3px 8px;
-      border: 1px solid rgba(55,65,81,0.85);
+    .card h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .card ul {
+      margin-left: 16px;
+      margin-top: 4px;
       color: var(--muted);
+    }
+
+    .card li + li {
+      margin-top: 2px;
     }
 
     /* LAB TABLE */
@@ -202,161 +274,191 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
       font-size: 12px;
+      margin-top: 8px;
     }
 
-    th, td {
-      border: 1px solid rgba(31,41,55,0.9);
-      padding: 6px 8px;
+    thead {
+      background: #020617;
+    }
+
+    th,
+    td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+      vertical-align: top;
       text-align: left;
     }
 
     th {
-      background: #020617;
-      font-weight: 600;
-    }
-
-    .stage-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .stage-card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .stage-card-sub {
       font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       color: var(--muted);
-      margin-bottom: 4px;
     }
 
-    .stage-card-list {
-      font-size: 12px;
+    tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    tbody tr:hover {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    td:first-child {
+      width: 28px;
       color: var(--muted);
-      padding-left: 18px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 11px;
+    }
+
+    .tag {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .tag-strong {
+      border-color: var(--accent-alt);
+      color: var(--accent-alt);
     }
 
     footer {
-      margin-top: 24px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border);
       padding-top: 14px;
-      border-top: 1px solid rgba(15,23,42,0.9);
-      font-size: 12px;
+      font-size: 11px;
       color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
+      text-align: right;
     }
 
-    @media (max-width: 900px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
       }
-      .grid-2 { grid-template-columns: minmax(0,1fr); }
-      .stage-grid { grid-template-columns: minmax(0,1fr); }
+
+      nav.nav-links {
+        display: none; /* keep it simple for mobile for now */
+      }
+
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      table {
+        font-size: 11px;
+      }
+
+      th,
+      td {
+        padding: 6px 6px;
+      }
     }
   </style>
 </head>
+
 <body>
-<div class="page">
-
-  <header>
-    <div class="logo">
-      <div class="logo-mark">AG</div>
-      <div>
-        <div class="logo-text-main">AliTechGrid</div>
-        <div class="logo-text-sub">AI · Cloud · Python · Engineering</div>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark">AG</div>
+        <div>
+          <div class="logo-text-main">AliTechGrid</div>
+          <div class="logo-text-sub">AI · Cloud · Python · Engineering</div>
+        </div>
       </div>
-    </div>
-    <nav class="nav-links">
-  <a href="#learn">What you’ll learn</a>
-  <a href="#playlist">YouTube series</a>
-  <a href="learning.html">Learning hub</a>
-  <a href="modules.html">Modules</a>
-  <a href="labs.html">Labs</a>
-  <a href="#contact">Contact</a>
-</nav>
 
-  </header>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="learning.html#tracks">Tracks</a>
+        <a href="learning.html">Learning hub</a>
+        <a href="labs.html">Labs</a>
+        <a href="learning.html#roadmap">Roadmap</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
 
-  <main>
     <!-- HERO -->
-    <section>
-      <div class="pill">
-        <span class="pill-dot"></span>
-        Official AliTechGrid lab pack
-      </div>
-      <h1>Hands-on Labs for <span>AWS · Python · AI Cloud</span></h1>
-      <p class="subtitle">
-        Use these labs as the practical backbone of your AliTechGrid training. Each lab aligns with
-        modules from the Learning hub and can be delivered in class, online, or as self-study work.
-      </p>
-      <div class="hero-actions">
-        <a href="#lab-table" class="btn btn-primary">View all labs</a>
-        <a href="learning.html#modules" class="btn">Back to modules</a>
-        <a href="learning.html#roadmap" class="btn">See full roadmap</a>
-      </div>
-    </section>
+    <section class="hero">
+      <div>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          Official AliTechGrid lab pack
+        </div>
 
-    <!-- LAB PURPOSE / FORMAT -->
-    <section id="overview">
-      <div class="section-header">
-        <h2 class="section-title">How these labs are designed</h2>
-        <p class="section-sub">
-          Every lab is scoped so it can be completed within a focused session, with clear
+        <h1 class="hero-title">
+          Hands-on labs for <span>AWS</span> · <span>Python</span> ·
+          <span>AI Cloud</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Use this 10-lab pack as the practical backbone of your AliTechGrid
+          training. Each lab matches a module from the Learning hub and can be
+          delivered in class, online, or as structured self-study.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="learning.html" class="btn btn-primary">Back to learning hub</a>
+          <a href="#lab-table" class="btn btn-outline">View 10-lab overview</a>
+        </div>
+
+        <div class="tag-row">
+          <span class="tag tag-strong">Console &amp; boto3 versions possible</span>
+          <span class="tag">Student + instructor variants</span>
+          <span class="tag">Built for higher-ed &amp; professional training</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>How these labs are designed</h3>
+        <p>
+          Each lab is scoped so it can be completed within a focused session, with clear
           prerequisites, student deliverables, and instructor notes.
         </p>
-      </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3 style="font-size:15px;margin-bottom:4px;">Student experience</h3>
-          <ul style="padding-left:18px;font-size:13px;color:var(--muted);margin-top:4px;">
-            <li>Step-by-step tasks and screenshots in PDF or DOCX format.</li>
-            <li>All labs reference the same AWS account and IAM setup.</li>
-            <li>Students finish with a concrete artifact (script, API, dashboard or report).</li>
-            <li>Difficulty ramps gradually from basic console tasks to automation and AI.</li>
-          </ul>
+        <div class="card-grid" style="grid-template-columns: minmax(0,1fr); gap:10px;">
+          <div class="card" style="background:rgba(15,23,42,0.9);">
+            <h3>Student experience</h3>
+            <ul>
+              <li>Step-by-step tasks and screenshots in PDF or DOCX format.</li>
+              <li>All labs reference the same AWS account and IAM setup.</li>
+              <li>Students finish with a concrete artifact (script, API, dashboard or report).</li>
+              <li>Difficulty ramps from basic console tasks to automation and AI.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="background:rgba(15,23,42,0.9);">
+            <h3>Instructor &amp; LMS use</h3>
+            <ul>
+              <li>Each lab can map to a single grade item in Brightspace / Moodle.</li>
+              <li>Instructor version includes answer keys, rubrics and troubleshooting notes.</li>
+              <li>Labs can be combined into mini-projects or semester-long capstones.</li>
+              <li>Easy to localise: only AWS console region and screenshots need updating.</li>
+            </ul>
+          </div>
         </div>
-
-        <div class="card">
-          <h3 style="font-size:15px;margin-bottom:4px;">Instructor & LMS use</h3>
-          <ul style="padding-left:18px;font-size:13px;color:var(--muted);margin-top:4px;">
-            <li>Each lab can map to a single grade item in Brightspace / Moodle.</li>
-            <li>Instructor version includes answer keys, rubrics and troubleshooting notes.</li>
-            <li>Labs can be combined into mini-projects or semester-long capstones.</li>
-            <li>Easy to localise: only AWS console region and screenshots need updating.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="badge-row">
-        <div class="badge">Console & boto3 versions possible</div>
-        <div class="badge">Student + instructor variants</div>
-        <div class="badge">Suitable for higher-ed & professional training</div>
       </div>
     </section>
 
     <!-- LAB TABLE -->
     <section id="lab-table">
-      <div class="section-header">
-        <h2 class="section-title">10-lab pack (overview)</h2>
-        <p class="section-sub">
-          You can treat this table as the master reference sheet when planning a course,
-          workshop, or self-study schedule.
-        </p>
-      </div>
+      <h2 class="section-title">10-lab pack (overview)</h2>
+      <p class="section-sub">
+        Treat this table as your master reference when planning a course, workshop,
+        or self-study schedule. Lab titles link to individual lab pages
+        (<code>lab1.html</code> … <code>lab10.html</code>).
+      </p>
 
-      <div class="card">
-        <table>
+      <table>
+        <thead>
           <tr>
             <th>#</th>
             <th>Lab title</th>
@@ -365,194 +467,139 @@
             <th>Student deliverable</th>
             <th>Instructor resources</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
             <td>1</td>
-            <td>Account hygiene & IAM user setup</td>
-            <td>Cloud & IAM</td>
+            <td>
+              <a href="lab1.html">Account hygiene &amp; IAM user setup</a>
+            </td>
+            <td>Cloud &amp; IAM</td>
             <td>AWS account, access to console</td>
             <td>Screenshot set of IAM user, MFA and sign-in URL</td>
             <td>Answer key, IAM policy samples, troubleshooting tips</td>
           </tr>
+
           <tr>
             <td>2</td>
-            <td>First boto3 inventory script</td>
+            <td>
+              <a href="lab2.html">First boto3 inventory script</a>
+            </td>
             <td>Python + AWS</td>
             <td>Python basics, Lab&nbsp;1 completed</td>
-            <td>Python script that lists EC2 instances and S3 buckets</td>
-            <td>Reference solution, extra challenges, grading rubric</td>
+            <td>
+              Python script listing EC2 instances and S3 buckets with key fields
+            </td>
+            <td>
+              Reference solution, extra challenges, grading rubric
+            </td>
           </tr>
+
           <tr>
             <td>3</td>
-            <td>Tagging automation for EC2 & S3</td>
+            <td>
+              <a href="lab3.html">Tagging automation for EC2 &amp; S3</a>
+            </td>
             <td>Automation</td>
             <td>Labs&nbsp;1–2</td>
-            <td>Script that enforces Owner / Environment tags</td>
+            <td>Script that enforces Owner / Environment tagging rules</td>
             <td>Sample tags, expected output, policy discussion notes</td>
           </tr>
+
           <tr>
             <td>4</td>
-            <td>Deploying your first Lambda function</td>
+            <td>
+              <a href="lab4.html">Deploying your first Lambda function</a>
+            </td>
             <td>Serverless</td>
             <td>Basic Python, IAM execution role</td>
-            <td>Deployed Lambda returning JSON with test evidence</td>
+            <td>Lambda returning JSON with test event</td>
             <td>Template code, IAM role JSON, marking checklist</td>
           </tr>
+
           <tr>
             <td>5</td>
-            <td>Lambda + API Gateway HTTP API</td>
+            <td>
+              <a href="lab5.html">Lambda + API Gateway HTTP API</a>
+            </td>
             <td>Serverless API</td>
             <td>Lab&nbsp;4</td>
-            <td>Public HTTPS endpoint with sample requests & responses</td>
+            <td>Public HTTPS endpoint with sample requests &amp; responses</td>
             <td>Reference configuration, common error catalogue</td>
           </tr>
+
           <tr>
             <td>6</td>
-            <td>DynamoDB CRUD from Python / Lambda</td>
-            <td>Data layer</td>
-            <td>Lab&nbsp;4 or basic Lambda knowledge</td>
-            <td>Working CRUD operations plus sample items</td>
-            <td>Table design guidance, performance notes</td>
+            <td>
+              <a href="lab6.html">CloudWatch monitoring &amp; alerts</a>
+            </td>
+            <td>Operations</td>
+            <td>Cloud basics, Labs&nbsp;1–5</td>
+            <td>Dashboard with metrics and alarms for key resources</td>
+            <td>Example thresholds, incident scenarios, marking guide</td>
           </tr>
+
           <tr>
             <td>7</td>
-            <td>Logging & alarms with CloudWatch</td>
-            <td>Observability</td>
-            <td>Labs&nbsp;4–6</td>
-            <td>Configured logs & alarms proven via a controlled failure</td>
-            <td>Alarm thresholds, incident simulation script</td>
+            <td>
+              <a href="lab7.html">Cost tagging &amp; basic cost explorer</a>
+            </td>
+            <td>FinOps</td>
+            <td>Tagging model from Lab 3</td>
+            <td>Simple cost report filtered by tag and service</td>
+            <td>Sample CSV, discussion prompts about optimisation</td>
           </tr>
+
           <tr>
             <td>8</td>
-            <td>Cost & usage snapshot</td>
-            <td>FinOps awareness</td>
-            <td>IAM permissions for billing / Cost Explorer</td>
-            <td>Short report or dashboard on where cost would appear</td>
-            <td>Sample report, discussion prompts for class</td>
+            <td>
+              <a href="lab8.html">Text &amp; image workloads with AI services</a>
+            </td>
+            <td>AI on AWS</td>
+            <td>Console familiarity, basic JSON</td>
+            <td>
+              Small portfolio of screenshots / JSON outputs from AI services
+            </td>
+            <td>Answer key, risk &amp; ethics discussion notes</td>
           </tr>
+
           <tr>
             <td>9</td>
-            <td>Text analysis with AI services</td>
-            <td>AI workloads</td>
-            <td>IAM role for AI service, basic Python</td>
-            <td>Script or notebook calling AI API on sample text</td>
-            <td>Test dataset, interpretation guide, ethical notes</td>
+            <td>
+              <a href="lab9.html">AI-assisted lab design &amp; evaluation</a>
+            </td>
+            <td>AI + Pedagogy</td>
+            <td>Completion of at least 5 earlier labs</td>
+            <td>Draft lab brief or rubric co-designed with an AI assistant</td>
+            <td>Rubric template, sample prompts, evaluation checklist</td>
           </tr>
+
           <tr>
             <td>10</td>
-            <td>End-to-end mini-project integration</td>
-            <td>Full stack</td>
-            <td>Most previous labs recommended</td>
-            <td>Deployed demo combining IAM, Lambda, API, data & AI</td>
-            <td>Project marking rubric, example architecture diagram</td>
+            <td>
+              <a href="lab10.html">Mini-project: portfolio-ready demo</a>
+            </td>
+            <td>Integration</td>
+            <td>Any 7+ labs completed</td>
+            <td>
+              Small but complete demo (API, dashboard or automation script)
+              with screenshots and short write-up
+            </td>
+            <td>Capstone marking rubric, presentation guide</td>
           </tr>
-        </table>
-      </div>
+        </tbody>
+      </table>
     </section>
 
-    <!-- STAGES / BUNDLES -->
-    <section id="bundles">
-      <div class="section-header">
-        <h2 class="section-title">Suggested bundles & stages</h2>
-        <p class="section-sub">
-          Group labs into stages to match course weeks, bootcamp days, or corporate training modules.
-        </p>
-      </div>
+    <footer>
+      Labs pack &copy; <span id="year"></span> AliTechGrid · Built for AWS, Python &amp; AI Cloud
+      teaching.
+    </footer>
+  </div>
 
-      <div class="card">
-        <div class="stage-grid">
-          <div>
-            <div class="stage-card-title">Stage 1 – Foundation</div>
-            <div class="stage-card-sub">Labs 1–2 · IAM + first automation</div>
-            <ul class="stage-card-list">
-              <li>Ensure every learner has a safe, working AWS account.</li>
-              <li>Introduce Python + boto3 as the main automation tool.</li>
-              <li>Good starting point for students with no cloud background.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="stage-card-title">Stage 2 – Governance & tagging</div>
-            <div class="stage-card-sub">Lab 3 · Policy in practice</div>
-            <ul class="stage-card-list">
-              <li>Turn tagging policies into real, automated enforcement.</li>
-              <li>Connect technical work to cost, ownership and compliance.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="stage-card-title">Stage 3 – Serverless APIs</div>
-            <div class="stage-card-sub">Labs 4–5 · Lambda + API Gateway</div>
-            <ul class="stage-card-list">
-              <li>Move from scripts to web-accessible services.</li>
-              <li>Excellent basis for student demos and mini-projects.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="stage-card-title">Stage 4 – Data & observability</div>
-            <div class="stage-card-sub">Labs 6–7 · DynamoDB + CloudWatch</div>
-            <ul class="stage-card-list">
-              <li>Store data safely and reason about performance.</li>
-              <li>Teach monitoring and troubleshooting in a realistic way.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="stage-card-title">Stage 5 – Cost & AI awareness</div>
-            <div class="stage-card-sub">Labs 8–9 · FinOps + AI workloads</div>
-            <ul class="stage-card-list">
-              <li>Help students understand cost drivers before production.</li>
-              <li>Introduce AI services with concrete, testable examples.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="stage-card-title">Stage 6 – Capstone</div>
-            <div class="stage-card-sub">Lab 10 · Integrated mini-project</div>
-            <ul class="stage-card-list">
-              <li>Combine cloud, automation and AI into one narrative.</li>
-              <li>Produce a portfolio artifact for job or promotion discussions.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DELIVERY NOTES -->
-    <section id="delivery">
-      <div class="section-header">
-        <h2 class="section-title">Delivery & assessment suggestions</h2>
-        <p class="section-sub">
-          A few ideas for how you can map these labs into real teaching and assessment.
-        </p>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3 style="font-size:15px;margin-bottom:4px;">In a higher-ed course</h3>
-          <ul style="padding-left:18px;font-size:13px;color:var(--muted);margin-top:4px;">
-            <li>Use Labs 1–7 as graded weekly activities.</li>
-            <li>Treat Labs 8–9 as formative / practice labs before a project.</li>
-            <li>Map Lab 10 to the final project grade with a clear rubric.</li>
-            <li>Upload lab PDFs and answer keys into your LMS with restricted access.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3 style="font-size:15px;margin-bottom:4px;">In corporate / professional training</h3>
-          <ul style="padding-left:18px;font-size:13px;color:var(--muted);margin-top:4px;">
-            <li>Use Labs 1–5 for a 3-day “AWS Automation with Python” bootcamp.</li>
-            <li>Add Labs 6–9 for a follow-up advanced workshop on observability & AI.</li>
-            <li>Adapt Lab 10 to match the company’s real use case or dataset.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div>© <span id="year"></span> AliTechGrid · AI Cloud Engineering™</div>
-    <div>Hands-on labs for serious learners, instructors and working professionals.</div>
-  </footer>
-</div>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  <script>
+    // simple year helper
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
