@@ -1,109 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Hub | AliTechGrid</title>
+  <meta charset="UTF-8" />
+  <title>AliTechGrid – AI Cloud Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AliTechGrid – AWS, Python and AI Cloud training with hands-on labs and practical engineering skills.">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0b1623;
-            color: #e8f1f8;
-        }
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #02081a;
+      --card: #020819;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #111827;
+    }
 
-        header {
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        a {
-            color: #77c7ff;
-            text-decoration: none;
-            margin-right: 18px;
-            font-size: 16px;
-        }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        h1 {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 42px;
-            font-weight: bold;
-            color: #7dd4ff;
-        }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-        .section {
-            width: 80%;
-            margin: 30px auto;
-            padding: 25px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+    }
 
-        h2 {
-            color: #9fe2ff;
-        }
+    /* HEADER */
 
-        ul {
-            line-height: 1.8;
-        }
-    </style>
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0 18px;
+      border-bottom: 1px solid rgba(15,23,42,0.9);
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, #22c55e, #0ea5e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      box-shadow: 0 0 18px rgba(56,189,248,0.7);
+    }
+
+    .logo-text-main { font-weight: 700; font-size: 17px; }
+    .logo-text-sub  { font-size: 11px; color: var(--muted); }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 14px;
+    }
+
+    nav a { color: var(--muted); }
+    nav a:hover { color: var(--accent); }
+    nav a.active { color: var(--accent); font-weight: 600; }
+
+    /* HERO */
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,189,248,0.5);
+      font-size: 11px;
+      color: var(--accent);
+      margin-top: 10px;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #22c55e, #22c55e 45%, transparent 100%);
+    }
+
+    h1 {
+      font-size: clamp(30px, 4vw, 38px);
+      font-weight: 800;
+      margin: 16px 0 8px;
+    }
+
+    h1 span {
+      background: linear-gradient(120deg, #38bdf8, #22c55e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      color: var(--muted);
+      margin-bottom: 22px;
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #22c55e);
+      border: none;
+      color: #0f172a;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(15,118,110,0.45);
+    }
+
+    .btn small {
+      font-size: 11px;
+      opacity: 0.85;
+    }
+
+    /* SECTIONS */
+
+    section { margin-bottom: 32px; }
+
+    .section-header { margin-bottom: 10px; }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: rgba(15,23,42,0.95);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 14px 16px 16px;
+      font-size: 13px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .card ul {
+      margin-top: 6px;
+      padding-left: 18px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .stat-pill {
+      border-radius: 999px;
+      padding: 3px 8px;
+      border: 1px solid rgba(55,65,81,0.8);
+    }
+
+    footer {
+      margin-top: 26px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(15,23,42,0.9);
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .grid-3 { grid-template-columns: minmax(0,1fr); }
+    }
+  </style>
 </head>
 <body>
+<div class="page">
 
-<header>
-    <div style="color:#7dd4ff; font-size:22px; font-weight:bold;">AliTechGrid Learning Hub</div>
-<nav class="nav-links">
-    <a href="#learn">What you’ll learn</a>
-    <a href="#playlist">YouTube series</a>
-    <a href="learning.html">Learning hub</a>
-    <a href="#resources">Code & labs</a>
-    <a href="#contact">Contact</a>
-</nav>
+  <header>
+    <div class="logo">
+      <div class="logo-mark">AG</div>
+      <div>
+        <div class="logo-text-main">AliTechGrid</div>
+        <div class="logo-text-sub">AI · Cloud · Python · Engineering</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#learn">What you’ll learn</a>
+      <a href="#playlist">YouTube series</a>
+      <!-- use ?v=2025 to dodge any old cache -->
+      <a href="learning.html?v=2025">Learning hub</a>
+      <a href="#resources">Code & labs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
+  <main>
+    <!-- HERO -->
+    <section>
+      <div class="pill">
+        <span class="pill-dot"></span>
+        AI Cloud Engineering™ by AliTechGrid
+      </div>
+      <h1>Learn <span>AWS, Python & AI Cloud</span> the way real engineers work.</h1>
+      <p class="subtitle">
+        Hands-on AWS labs, Python automation, serverless architecture and AI on AWS —
+        designed for serious learners, higher-ed programs and working professionals.
+      </p>
+      <div class="hero-actions">
+        <a href="#learn" class="btn btn-primary">Start overview</a>
+        <a href="learning.html?v=2025" class="btn">Open Learning hub <small>(modules & labs)</small></a>
+        <a href="#contact" class="btn">Work with AliTechGrid</a>
+      </div>
+    </section>
 
-</header>
+    <!-- WHAT YOU'LL LEARN -->
+    <section id="learn">
+      <div class="section-header">
+        <h2 class="section-title">What you’ll learn</h2>
+        <p class="section-sub">
+          A clear, structured path into cloud engineering with AWS, Python and AI —
+          suitable for students, instructors and practitioners.
+        </p>
+      </div>
 
-<h1>Learning Hub</h1>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Python Programming</h3>
+          <ul>
+            <li>Python Essentials 1 &amp; 2 (PCEP style)</li>
+            <li>Control flow, functions, modules, files</li>
+            <li>OOP basics and mini-projects</li>
+            <li>Network programming &amp; automation scripts</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>AWS Cloud Engineering</h3>
+          <ul>
+            <li>IAM, security fundamentals and account hygiene</li>
+            <li>EC2, S3, DynamoDB, CloudWatch basics</li>
+            <li>Serverless APIs with Lambda + API Gateway</li>
+            <li>Monitoring, tagging and cost-aware design</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>AI &amp; Automation on AWS</h3>
+          <ul>
+            <li>Using boto3 to control AWS from Python</li>
+            <li>Text &amp; image workloads with AI services</li>
+            <li>AI-assisted lab design and evaluation</li>
+            <li>Portfolio-ready mini cloud projects</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="section" id="python">
-    <h2>Python Programming</h2>
-    <ul>
-        <li>Python Essentials 1 & 2</li>
-        <li>Control statements, loops, functions</li>
-        <li>OOP, Modules, Files, Error handling</li>
-        <li>Network programming & automation</li>
-        <li>AI-powered Python applications</li>
-    </ul>
+      <div class="stats-row">
+        <div class="stat-pill">10 core videos per series</div>
+        <div class="stat-pill">10 lab packs (student &amp; instructor)</div>
+        <div class="stat-pill">Built for higher-ed + industry use</div>
+      </div>
+    </section>
+
+    <!-- PLACEHOLDERS YOU CAN EXPAND LATER -->
+    <section id="playlist">
+      <div class="section-header">
+        <h2 class="section-title">YouTube series</h2>
+        <p class="section-sub">
+          This is where you’ll link your future AliTechGrid channel playlists
+          for AWS Automation with Python, Serverless APIs, AI workloads, etc.
+        </p>
+      </div>
+      <div class="card">
+        <p style="font-size:13px;color:var(--muted);">
+          Coming soon: embedded playlists for each module.  
+          For now, the Learning hub page is the main entry point for your course structure.
+        </p>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="section-header">
+        <h2 class="section-title">Code & labs</h2>
+        <p class="section-sub">
+          Later you’ll link GitHub repos, lab PDFs, DOCX manuals, and example projects here.
+        </p>
+      </div>
+      <div class="card">
+        <p style="font-size:13px;color:var(--muted);">
+          Use this area as your official index of lab manuals, sample code and downloadable
+          instructor packs. The Learning hub will map directly to these resources.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-header">
+        <h2 class="section-title">Contact AliTechGrid</h2>
+        <p class="section-sub">
+          For collaboration, institutional training or custom lab development.
+        </p>
+      </div>
+      <div class="card">
+        <ul style="padding-left:18px;font-size:13px;">
+          <li><strong>Website:</strong> <a href="https://www.alitechgrid.com">www.alitechgrid.com</a></li>
+          <li><strong>Email:</strong> <a href="mailto:info@alitechgrid.com">info@alitechgrid.com</a></li>
+          <li><strong>Location:</strong> BC, Canada (remote and hybrid training)</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> AliTechGrid · AI Cloud Engineering™</div>
+    <div>Built for serious learners, instructors and working professionals.</div>
+  </footer>
 </div>
 
-<div class="section" id="aws">
-    <h2>AWS Cloud Engineering</h2>
-    <ul>
-        <li>AWS IAM & security fundamentals</li>
-        <li>S3, EC2, DynamoDB & CloudWatch</li>
-        <li>Lambda + API Gateway serverless apps</li>
-        <li>Boto3 automation projects</li>
-        <li>AI & ML workloads on AWS</li>
-    </ul>
-</div>
-
-<div class="section" id="cloud">
-    <h2>Cloud, AI & DevOps Skills</h2>
-    <ul>
-        <li>AI engineering fundamentals</li>
-        <li>Building AI-powered learning systems</li>
-        <li>CI/CD workflows & automation</li>
-        <li>Edge AI & security engineering</li>
-        <li>Real-world projects for students & engineers</li>
-    </ul>
-</div>
-
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
