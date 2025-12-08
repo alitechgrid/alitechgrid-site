@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lab 2 – First boto3 Inventory Script | AliTechGrid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AliTechGrid Lab 2: build a Python boto3 script to inventory EC2 and S3 resources." />
+  <style>
+    :root { --bg:#020617; --card:#020819; --accent:#38bdf8; --accent2:#22c55e; --text:#e5e7eb; --muted:#9ca3af; --border:#1f2937; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at top,#0b1120,#020617 55%,#000 100%);
+      color:var(--text); line-height:1.6;
+    }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .page { max-width:900px; margin:0 auto; padding:28px 18px 60px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px; }
+    .logo { display:flex; align-items:center; gap:10px; }
+    .logo-mark {
+      width:34px; height:34px; border-radius:999px;
+      background:linear-gradient(135deg,#22c55e,#38bdf8);
+      display:flex; align-items:center; justify-content:center;
+      color:#020617; font-weight:800; font-size:18px;
+    }
+    .logo-main { font-weight:700; letter-spacing:0.04em; }
+    .logo-sub { font-size:11px; color:var(--muted); }
+    .nav-links { display:flex; gap:16px; font-size:13px; flex-wrap:wrap; }
+    .nav-links a { color:var(--muted); padding-bottom:2px; border-bottom:1px solid transparent; }
+    .nav-links a:hover { color:var(--accent); border-bottom-color:rgba(56,189,248,0.7); }
+    h1 { font-size:24px; margin-bottom:6px; }
+    .lab-meta { font-size:13px; color:var(--muted); margin-bottom:10px; }
+    .tags { font-size:12px; color:var(--muted); margin-bottom:16px; }
+    .tags span {
+      display:inline-block; padding:3px 8px; margin-right:6px; margin-bottom:4px;
+      border-radius:999px; border:1px solid rgba(148,163,184,0.5);
+    }
+    h2 { font-size:18px; margin-top:18px; margin-bottom:6px; }
+    p { font-size:14px; margin-bottom:6px; }
+    ul { padding-left:18px; font-size:14px; color:var(--muted); margin-bottom:6px; }
+    li + li { margin-top:4px; }
+    .callout {
+      border-radius:14px; border:1px solid var(--border); background:rgba(15,23,42,0.96);
+      padding:10px 12px; font-size:13px; color:var(--muted); margin-top:10px;
+    }
+    .back-link { margin-top:20px; font-size:13px; }
+    @media (max-width:700px){ header{flex-direction:column;align-items:flex-start;} }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="logo">
+      <div class="logo-mark">AG</div>
+      <div>
+        <div class="logo-main">AliTechGrid</div>
+        <div class="logo-sub">Cloud · Python · AI Training &amp; Services</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="learning.html">Learning hub</a>
+      <a href="modules.html">Modules</a>
+      <a href="labs.html">Labs</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Lab 2 · First boto3 inventory script</h1>
+    <p class="lab-meta">
+      Track: <strong>Python Automation</strong> · Typical duration: 60–90 minutes · Level: Intermediate
+    </p>
+
+    <div class="tags">
+      <span>Python</span>
+      <span>boto3</span>
+      <span>EC2 &amp; S3 inventory</span>
+      <span>Foundation for later automation</span>
+    </div>
+
+    <h2>1. Objective</h2>
+    <p>
+      Implement a Python script using boto3 that lists EC2 instances and S3 buckets, returning
+      a concise view of key metadata (IDs, names, regions, tags).
+    </p>
+
+    <h2>2. Context</h2>
+    <p>
+      Before more advanced automation is introduced, engineering teams benefit from a reliable
+      view of “what actually exists” in their environments. This lab establishes that baseline.
+    </p>
+
+    <h2>3. Prerequisites</h2>
+    <ul>
+      <li>Lab 1 completed (IAM user / profile ready).</li>
+      <li>Python 3.x installed with the AWS SDK for Python (boto3).</li>
+      <li>Configured credentials/profile for the lab account.</li>
+    </ul>
+
+    <h2>4. High-level steps</h2>
+    <ul>
+      <li>Verify Python and boto3 installation.</li>
+      <li>Write a script that lists EC2 instances and prints selected fields.</li>
+      <li>Extend the script to list S3 buckets and basic properties.</li>
+      <li>Optionally enrich results with tags (Owner, Environment, Application).</li>
+      <li>Run the script and capture the output for later reference.</li>
+    </ul>
+
+    <h2>5. Expected outputs</h2>
+    <ul>
+      <li>A Python file (for example, <code>inventory.py</code>) stored locally or in a repository.</li>
+      <li>Example console output demonstrating EC2 and S3 inventory.</li>
+      <li>Short notes on how this inventory could be extended in future work.</li>
+    </ul>
+
+    <div class="callout">
+      This lab is frequently reused as the starting point for tagging enforcement, reporting
+      and cost-awareness workflows in later sessions.
+    </div>
+
+    <div class="back-link">
+      <a href="labs.html">← Back to lab overview</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

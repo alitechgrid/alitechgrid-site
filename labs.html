@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AliTechGrid Labs – AWS, Python & AI Cloud Exercises</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ten hands-on labs for AWS, Python automation and AI Cloud from AliTechGrid, aligned to professional training programs." />
+  <style>
+    :root {
+      --bg: #020617;
+      --card: #020819;
+      --accent: #38bdf8;
+      --accent2: #22c55e;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 16px 64px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #22c55e, #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #020617;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .logo-main { font-weight: 700; letter-spacing: 0.04em; }
+    .logo-sub  { font-size: 11px; color: var(--muted); }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: rgba(56,189,248,0.7);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.9);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .pill-dot {
+      width: 7px; height: 7px; border-radius: 999px; background: var(--accent2);
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    th, td {
+      border-bottom: 1px solid rgba(31,41,55,0.9);
+      padding: 8px 6px;
+      text-align: left;
+    }
+
+    th {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    tr:hover td {
+      background: rgba(15,23,42,0.6);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      font-size: 11px;
+      color: var(--muted);
+      margin-right: 4px;
+      margin-bottom: 2px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .card {
+      background: rgba(15,23,42,0.96);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 14px 16px 12px;
+      font-size: 13px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .card li + li { margin-top: 3px; }
+
+    footer {
+      border-top: 1px solid rgba(15,23,42,0.9);
+      padding-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      header { flex-direction: column; align-items: flex-start; }
+      .grid-2 { grid-template-columns: minmax(0,1fr); }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="logo">
+      <div class="logo-mark">AG</div>
+      <div>
+        <div class="logo-main">AliTechGrid</div>
+        <div class="logo-sub">Cloud · Python · AI Training &amp; Services</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="learning.html">Learning hub</a>
+      <a href="modules.html">Modules</a>
+      <a href="labs.html">Labs</a>
+    </nav>
+  </header>
+
+  <section>
+    <div class="pill">
+      <span class="pill-dot"></span>
+      Ten practical labs · AWS · Python · AI Cloud
+    </div>
+    <h1>Hands-on lab pack</h1>
+    <p class="hero-sub">
+      These ten labs provide a structured path from AWS account hygiene to Python automation, serverless
+      workloads and AI-supported scenarios. The public site outlines the scope; detailed step-by-step
+      workbooks are delivered privately as part of AliTechGrid engagements.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Lab overview</h2>
+    <p class="section-sub">
+      Click any lab title to see a concise description. In a full program, participants receive
+      detailed guides, starter code and reference outputs.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:6%;">#</th>
+          <th style="width:30%;">Lab</th>
+          <th style="width:44%;">Focus</th>
+          <th style="width:20%;">Primary track</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><a href="lab1.html">Account hygiene &amp; IAM user setup</a></td>
+          <td>Move day-to-day work off the root account, enable MFA and prepare a safe baseline for all future labs.</td>
+          <td><span class="tag">Cloud foundations</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><a href="lab2.html">First boto3 inventory script</a></td>
+          <td>Use Python and boto3 to list EC2 instances and S3 buckets with key metadata.</td>
+          <td><span class="tag">Python automation</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><a href="lab3.html">Tagging review &amp; enforcement</a></td>
+          <td>Query resources, inspect tags and propose/tag improvements for ownership and environment clarity.</td>
+          <td><span class="tag">Python automation</span><span class="tag">Governance</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><a href="lab4.html">Scheduled reporting job</a></td>
+          <td>Turn a one-off Python script into a scheduled reporting workflow using cloud-friendly patterns.</td>
+          <td><span class="tag">Automation</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><a href="lab5.html">First Lambda function</a></td>
+          <td>Deploy a simple Lambda that processes an event and records output for later inspection.</td>
+          <td><span class="tag">Serverless</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><a href="lab6.html">Serverless API with API Gateway</a></td>
+          <td>Expose a Lambda function over HTTPS, return structured responses and test behaviour.</td>
+          <td><span class="tag">Serverless</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><a href="lab7.html">Observability &amp; basic alerting</a></td>
+          <td>Configure logging and metrics for a small workload and create at least one basic alarm.</td>
+          <td><span class="tag">Operations</span></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><a href="lab8.html">AI API integration scenario</a></td>
+          <td>Call an AI/ML API from an application or script with clear inputs, outputs and guardrails.</td>
+          <td><span class="tag">AI workloads</span></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><a href="lab9.html">Cost &amp; architecture walk-through</a></td>
+          <td>Review a small architecture, identify cost/simplicity improvements and document options.</td>
+          <td><span class="tag">Architecture</span></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><a href="lab10.html">Mini-project / integrated demo</a></td>
+          <td>Combine earlier labs into a small, end-to-end scenario suitable for internal demos or portfolios.</td>
+          <td><span class="tag">Capstone</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="delivery">
+    <h2 class="section-title">Delivery &amp; usage scenarios</h2>
+    <p class="section-sub">
+      The lab pack is flexible enough to support internal upskilling programs, public workshops and
+      client-specific consulting work.
+    </p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Internal team enablement</h3>
+        <ul>
+          <li>Use Labs 1–4 as the core sequence for onboarding engineers into AWS and Python automation.</li>
+          <li>Introduce Labs 5–7 when the team is ready to deploy and support small services.</li>
+          <li>Position Labs 8–9 as advanced, scenario-based exercises around AI and architecture choices.</li>
+          <li>Use Lab 10 as a capstone where participants build and present a small, end-to-end cloud solution.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Public trainings &amp; client programs</h3>
+        <ul>
+          <li>Package the labs into 2–5 day workshops (e.g., “AWS Automation with Python” or “Serverless &amp; AI on AWS”).</li>
+          <li>Deliver lab assets as downloadable workbooks, GitHub repositories or customer-specific portals.</li>
+          <li>Use the lab outputs (scripts, APIs, dashboards) as evidence of skill development for stakeholders.</li>
+          <li>Align the mini-project in Lab 10 with the client’s own environment, data or operational requirements.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="section-sub" style="margin-top:14px;">
+      Detailed lab guides, answer keys and facilitator notes remain private to AliTechGrid and
+      are shared only as part of structured training or consulting engagements.
+    </p>
+  </section>
+
+  <footer>
+    © <span id="year"></span> AliTechGrid – Hands-on labs for cloud, Python &amp; AI.
+  </footer>
+</div>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

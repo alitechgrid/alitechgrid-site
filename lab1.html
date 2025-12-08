@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lab 1 – Account Hygiene & IAM User Setup | AliTechGrid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AliTechGrid Lab 1: establish a secure AWS baseline with IAM user, MFA and account hygiene suitable for engineering lab work." />
+  <style>
+    :root {
+      --bg: #020617;
+      --card: #020819;
+      --accent: #38bdf8;
+      --accent2: #22c55e;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #22c55e, #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #020617;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .logo-main { font-weight: 700; letter-spacing: 0.04em; }
+    .logo-sub  { font-size: 11px; color: var(--muted); }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: rgba(56,189,248,0.7);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .lab-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .tags {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .tags span {
+      display: inline-block;
+      padding: 3px 8px;
+      margin-right: 6px;
+      margin-bottom: 4px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+
+    p { font-size: 14px; margin-bottom: 6px; }
+
+    ul { padding-left: 18px; font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+    li + li { margin-top: 4px; }
+
+    .callout {
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,0.96);
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .back-link {
+      margin-top: 20px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="logo">
+      <div class="logo-mark">AG</div>
+      <div>
+        <div class="logo-main">AliTechGrid</div>
+        <div class="logo-sub">Cloud · Python · AI Training &amp; Services</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="learning.html">Learning hub</a>
+      <a href="modules.html">Modules</a>
+      <a href="labs.html">Labs</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Lab 1 · Account hygiene &amp; IAM user setup</h1>
+    <p class="lab-meta">
+      Track: <strong>Cloud &amp; IAM Foundations</strong> · Typical duration: 60–90 minutes · Level: Introductory
+    </p>
+
+    <div class="tags">
+      <span>AWS console</span>
+      <span>Identity &amp; access</span>
+      <span>Secure baseline</span>
+      <span>Pre-requisite for all later labs</span>
+    </div>
+
+    <h2>1. Objective</h2>
+    <p>
+      Establish a safe, repeatable baseline for working in AWS by creating a dedicated IAM user,
+      enabling multi-factor authentication (MFA) and recording the correct sign-in URL. This removes
+      reliance on the root account for day-to-day work.
+    </p>
+
+    <h2>2. Business &amp; engineering context</h2>
+    <p>
+      Many incidents and misconfigurations in cloud environments come from shared credentials or
+      over-privileged accounts. This lab sets the tone for disciplined identity and access practices
+      that scale from individual practitioners to full teams.
+    </p>
+    <ul>
+      <li>Reduces risk associated with misuse of the root account.</li>
+      <li>Encourages individual ownership and accountability.</li>
+      <li>Aligns hands-on work with governance expectations from day one.</li>
+    </ul>
+
+    <h2>3. Prerequisites</h2>
+    <ul>
+      <li>Access to an AWS account intended for training or non-production work.</li>
+      <li>Ability to sign in as the account owner or an authorised administrator for initial setup.</li>
+      <li>Authenticator app or MFA method available (phone or hardware token).</li>
+    </ul>
+
+    <h2>4. High-level steps</h2>
+    <p>
+      These are the main stages for the lab. In a full engagement, each step is accompanied by
+      screenshots and precise console paths in the participant workbook.
+    </p>
+    <ul>
+      <li>Review the AWS console and locate the IAM service.</li>
+      <li>Create an IAM group intended for engineering or lab work.</li>
+      <li>Attach an appropriate managed policy or custom policy set to the group.</li>
+      <li>Create an individual IAM user and add it to the group.</li>
+      <li>Configure a strong initial password and sign-in experience.</li>
+      <li>Sign in with the new IAM identity and confirm permissions are correct.</li>
+      <li>Enable MFA for the IAM user and validate sign-in with MFA.</li>
+      <li>Record the account-specific sign-in URL and store it securely.</li>
+    </ul>
+
+    <h2>5. Expected outputs</h2>
+    <ul>
+      <li>A working IAM user with MFA enforced and the correct level of permissions.</li>
+      <li>A captured sign-in URL for the account, ready to be reused in later labs.</li>
+      <li>Short written notes explaining why the root account is no longer needed for daily tasks.</li>
+    </ul>
+
+    <h2>6. Quality criteria</h2>
+    <ul>
+      <li>The IAM user belongs to the correct group and has no direct, unnecessary policies attached.</li>
+      <li>MFA is enabled and tested with at least one successful sign-in.</li>
+      <li>Permissions are sufficient for later labs, but do not grant full administrative access unless explicitly required.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Facilitation note:</strong> AliTechGrid typically supplies a detailed PDF or DOCX
+      workbook for this lab, including screenshots, command references and an internal checklist.
+      Those materials are not exposed publicly and can be integrated into customer-specific portals.
+    </div>
+
+    <div class="back-link">
+      <a href="labs.html">← Back to lab overview</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

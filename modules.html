@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AliTechGrid Modules – AWS · Python · AI Cloud</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Module-by-module breakdown of AliTechGrid's AWS, Python and AI Cloud training. Includes outcomes and lab alignment." />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #020818;
+      --card: #020819;
+      --accent: #38bdf8;
+      --accent-soft: #0ea5e9;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #111827;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #22d3ee, #0ea5e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .logo-text-main { font-weight: 700; letter-spacing: 0.04em; }
+    .logo-text-sub { font-size: 12px; color: var(--muted); }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: rgba(56,189,248,0.7);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      margin-bottom: 16px;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 6px;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.9);
+    }
+
+    h2.section-title {
+      font-size: 20px;
+      margin-bottom: 12px;
+      margin-top: 12px;
+    }
+
+    p.section-sub {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #020617, #020617 35%, #020617 100%);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
+      font-size: 13px;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .card-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .pill-sm {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      font-size: 11px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    ul li + li { margin-top: 4px; }
+
+    .footer-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 24px;
+    }
+
+    @media (max-width: 640px) {
+      header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark">AG</div>
+        <div>
+          <div class="logo-text-main">AliTechGrid</div>
+          <div class="logo-text-sub">Cloud · Python · AI Training &amp; Services</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#learn">What you’ll learn</a>
+        <a href="index.html#playlist">YouTube series</a>
+        <a href="learning.html">Learning hub</a>
+        <a href="modules.html">Modules</a>
+        <a href="labs.html">Labs</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section>
+      <div class="pill">
+        <span class="pill-dot"></span>
+        <span>Module roadmap · AliTechGrid</span>
+      </div>
+
+      <h1>Modules &amp; learning outcomes</h1>
+      <p class="hero-subtitle">
+        A structured path through AWS foundations, Python automation and AI workloads on AWS –
+        suitable for professional upskilling, internal enablement and focused capability building.
+      </p>
+
+      <div class="hero-meta">
+        <span>4 core modules + optional capstone</span>
+        <span>Each module: typically 1–2 weeks of applied work</span>
+        <span>Backed by the 10-lab pack</span>
+      </div>
+    </section>
+
+    <section id="modules">
+      <h2 class="section-title">Core modules</h2>
+      <p class="section-sub">
+        These modules can be mapped directly to program phases, training cohorts or internal learning
+        journeys. Each module is linked to specific labs from the 10-lab pack.
+      </p>
+
+      <div class="module-grid">
+        <article class="card">
+          <h3>Module 1 · Cloud &amp; IAM Foundations</h3>
+          <div class="card-meta">
+            Track: <strong>Cloud &amp; Governance</strong> · Level: Introductory to Practitioner
+          </div>
+          <div style="margin-bottom:6px;">
+            <span class="pill-sm">Labs: 1–2</span>
+            <span class="pill-sm">Typical position: phase 1</span>
+          </div>
+          <ul>
+            <li>AWS global infrastructure, regions, availability zones and core services.</li>
+            <li>Accounts, root user, IAM best practices and MFA.</li>
+            <li>Groups, roles and policies for safe day-to-day operations.</li>
+            <li>Hands-on: a dedicated “engineering lab” user with appropriate controls.</li>
+          </ul>
+          <p><strong>Outcome:</strong> participants can work in AWS with a secure baseline that aligns
+            with identity, access and governance expectations.</p>
+        </article>
+
+        <article class="card">
+          <h3>Module 2 · Python + boto3 Automation</h3>
+          <div class="card-meta">
+            Track: <strong>Python Automation</strong> · Level: Intermediate
+          </div>
+          <div style="margin-bottom:6px;">
+            <span class="pill-sm">Labs: 2–4</span>
+            <span class="pill-sm">Typical position: phase 2</span>
+          </div>
+          <ul>
+            <li>Python essentials revisited with a cloud-first mindset.</li>
+            <li>Working with AWS credentials and profiles for automation safely.</li>
+            <li>Inventory scripts for EC2, S3 and related resources.</li>
+            <li>Tagging, enforcement and basic reporting use cases.</li>
+          </ul>
+          <p><strong>Outcome:</strong> participants replace manual console work with versioned Python
+            automation that can be integrated into existing practices.</p>
+        </article>
+
+        <article class="card">
+          <h3>Module 3 · Serverless APIs &amp; Data on AWS</h3>
+          <div class="card-meta">
+            Track: <strong>Serverless &amp; Data</strong> · Level: Intermediate
+          </div>
+          <div style="margin-bottom:6px;">
+            <span class="pill-sm">Labs: 5–7</span>
+            <span class="pill-sm">Typical position: phase 3</span>
+          </div>
+          <ul>
+            <li>Design and implementation of small HTTP APIs with Lambda + API Gateway.</li>
+            <li>Data storage patterns for simple use cases (e.g., DynamoDB).</li>
+            <li>Logging, metrics and basic alerting using CloudWatch.</li>
+            <li>Building demos that can be deployed and showcased internally.</li>
+          </ul>
+          <p><strong>Outcome:</strong> participants can implement and troubleshoot lightweight
+            services that combine compute, data and observability.</p>
+        </article>
+
+        <article class="card">
+          <h3>Module 4 · AI &amp; Automation Workloads on AWS</h3>
+          <div class="card-meta">
+            Track: <strong>AI &amp; Cloud</strong> · Level: Intermediate to Advanced</div>
+          <div style="margin-bottom:6px;">
+            <span class="pill-sm">Labs: 8–10</span>
+            <span class="pill-sm">Typical position: phase 4</span>
+          </div>
+          <ul>
+            <li>Patterns for using AWS AI services in automation scenarios.</li>
+            <li>Information flows: inputs, outputs, feedback and monitoring.</li>
+            <li>Risk, cost and value considerations for AI workloads in practice.</li>
+            <li>Integration into end-to-end examples suitable for demonstrations.</li>
+          </ul>
+          <p><strong>Outcome:</strong> participants can design and implement small AI-supported
+            workflows that are explainable, supportable and realistic.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="capstone">
+      <h2 class="section-title">Optional capstone / mini-project</h2>
+      <p class="section-sub">
+        For longer engagements or cohorts, the modules and labs can be combined into a focused
+        mini-project that demonstrates capability across the stack.
+      </p>
+
+      <div class="card">
+        <h3>Capstone · AI-supported cloud automation demo</h3>
+        <div class="card-meta">
+          Uses elements from all modules · Typically delivered over 1–3 weeks
+        </div>
+        <ul>
+          <li>Participants define a small but meaningful scenario (monitoring, reporting, automation, data pipeline, AI-assisted process).</li>
+          <li>Cloud &amp; IAM practices from early modules provide the operational baseline.</li>
+          <li>Python automation, serverless components and AI services are combined into a cohesive flow.</li>
+          <li>Outputs include a working demo, concise technical summary and suggested next steps.</li>
+        </ul>
+        <p><strong>Deliverables:</strong> code repository or artefacts, concise design notes and a
+          short presentation or recorded walkthrough that can be shared with stakeholders.</p>
+      </div>
+
+      <p class="footer-note">
+        This page can be referenced in proposals, internal documentation or training catalogs.
+        The <a href="labs.html">lab overview</a> provides a detailed view of the practical exercises
+        aligned to each module.
+      </p>
+    </section>
+  </div>
+</body>
+</html>
