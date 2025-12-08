@@ -12,7 +12,6 @@
       --bg-alt: #020818;
       --card: #020819;
       --accent: #38bdf8;
-      --accent-soft: #0ea5e9;
       --accent-2: #22c55e;
       --text: #e5e7eb;
       --muted: #9ca3af;
@@ -23,7 +22,7 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #0b1120, #020617 45%, #000 100%);
+      background: radial-gradient(circle at top, #0b1120, #020617 50%, #000 100%);
       color: var(--text);
       line-height: 1.6;
     }
@@ -34,7 +33,7 @@
     .page {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 20px 16px 64px;
+      padding: 20px 16px 60px;
     }
 
     /* HEADER */
@@ -44,7 +43,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 8px 0 18px;
-      border-bottom: 1px solid rgba(15,23,42,0.8);
+      border-bottom: 1px solid rgba(15,23,42,0.9);
       margin-bottom: 24px;
     }
 
@@ -64,17 +63,17 @@
       justify-content: center;
       font-weight: 800;
       font-size: 18px;
-      box-shadow: 0 0 16px rgba(56,189,248,0.6);
+      box-shadow: 0 0 18px rgba(56,189,248,0.7);
     }
 
-    .logo-text-main { font-weight: 700; font-size: 16px; }
-    .logo-text-sub { font-size: 11px; color: var(--muted); }
+    .logo-text-main { font-weight: 700; font-size: 17px; }
+    .logo-text-sub  { font-size: 11px; color: var(--muted); }
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       gap: 14px;
       font-size: 14px;
-      flex-wrap: wrap;
     }
 
     nav a { color: var(--muted); }
@@ -86,25 +85,25 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 3px 10px;
+      padding: 4px 11px;
       border-radius: 999px;
-      border: 1px solid rgba(56,189,248,0.4);
+      border: 1px solid rgba(56,189,248,0.5);
       font-size: 11px;
       color: var(--accent);
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
     .pill-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: radial-gradient(circle, #22c55e, #22c55e 40%, transparent 100%);
+      background: radial-gradient(circle, #22c55e, #22c55e 45%, transparent 100%);
     }
 
     h1 {
-      font-size: clamp(28px, 3vw, 34px);
+      font-size: clamp(28px, 3.5vw, 34px);
       font-weight: 800;
-      margin: 14px 0 6px;
+      margin: 14px 0 8px;
     }
 
     h1 span {
@@ -115,9 +114,9 @@
     }
 
     .subtitle {
-      max-width: 720px;
+      max-width: 760px;
       color: var(--muted);
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       font-size: 14px;
     }
 
@@ -125,21 +124,20 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .btn {
       padding: 8px 14px;
       border-radius: 999px;
       font-size: 13px;
-      border: 1px solid rgba(148,163,184,0.3);
+      border: 1px solid rgba(148,163,184,0.35);
       background: transparent;
       color: var(--text);
       cursor: pointer;
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .btn-primary {
@@ -147,21 +145,18 @@
       border: none;
       color: #0f172a;
       font-weight: 600;
-      box-shadow: 0 10px 25px rgba(15,118,110,0.4);
     }
 
-    .btn span.small {
+    .btn small {
       font-size: 11px;
       opacity: 0.85;
     }
 
-    /* LAYOUT */
+    /* LAYOUT SECTIONS */
 
-    section { margin-bottom: 32px; }
+    section { margin-bottom: 30px; }
 
-    .section-header {
-      margin-bottom: 12px;
-    }
+    .section-header { margin-bottom: 10px; }
 
     .section-title {
       font-size: 18px;
@@ -175,16 +170,24 @@
 
     .grid-2 {
       display: grid;
-      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.6fr);
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
       gap: 16px;
     }
 
     .card {
-      background: rgba(15,23,42,0.9);
+      background: rgba(15,23,42,0.96);
       border-radius: 16px;
       border: 1px solid var(--border);
       padding: 14px 16px 16px;
       font-size: 13px;
+    }
+
+    .card-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0ea5e9;
+      margin-bottom: 4px;
     }
 
     .card-title {
@@ -193,19 +196,19 @@
       margin-bottom: 4px;
     }
 
-    .card-tag {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent-soft);
-      margin-bottom: 4px;
+    .card small { font-size: 11px; color: var(--muted); }
+
+    .card ul {
+      margin-top: 6px;
+      padding-left: 18px;
+      font-size: 12px;
+      color: var(--muted);
     }
 
     .track-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 12px;
-      margin-top: 10px;
     }
 
     .track h3 {
@@ -217,67 +220,40 @@
       margin-top: 4px;
       padding-left: 18px;
       font-size: 12px;
+      color: var(--muted);
     }
 
     .badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 6px;
+      margin-top: 8px;
       font-size: 11px;
     }
 
     .badge {
-      padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(55,65,81,0.7);
+      padding: 3px 8px;
+      border: 1px solid rgba(55,65,81,0.85);
       color: var(--muted);
     }
-
-    /* MODULES */
-
-    .module-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 12px;
-    }
-
-    .module h3 {
-      font-size: 14px;
-      margin-bottom: 3px;
-    }
-
-    .module small {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .module ul {
-      margin-top: 6px;
-      padding-left: 18px;
-      font-size: 12px;
-    }
-
-    /* LABS */
 
     .lab-list {
       list-style: none;
-      margin-top: 6px;
+      margin-top: 8px;
       font-size: 12px;
     }
 
     .lab-list li {
       padding: 6px 0;
-      border-bottom: 1px dashed rgba(51,65,85,0.7);
+      border-bottom: 1px dashed rgba(31,41,55,0.9);
     }
 
     .lab-list li span {
       display: block;
-      color: var(--muted);
       font-size: 11px;
+      color: var(--muted);
     }
-
-    /* ROADMAP TABLE */
 
     table {
       width: 100%;
@@ -287,7 +263,7 @@
     }
 
     th, td {
-      border: 1px solid rgba(31,41,55,0.8);
+      border: 1px solid rgba(31,41,55,0.9);
       padding: 6px 8px;
       text-align: left;
     }
@@ -297,11 +273,9 @@
       font-weight: 600;
     }
 
-    /* FOOTER */
-
     footer {
       margin-top: 24px;
-      padding-top: 16px;
+      padding-top: 14px;
       border-top: 1px solid rgba(15,23,42,0.9);
       font-size: 12px;
       color: var(--muted);
@@ -312,15 +286,19 @@
     }
 
     @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
       .grid-2 { grid-template-columns: minmax(0,1fr); }
       .track-grid { grid-template-columns: minmax(0,1fr); }
-      .module-grid { grid-template-columns: minmax(0,1fr); }
-      header { flex-direction: column; align-items: flex-start; gap: 8px; }
     }
   </style>
 </head>
 <body>
 <div class="page">
+
   <header>
     <div class="logo">
       <div class="logo-mark">AG</div>
@@ -329,14 +307,14 @@
         <div class="logo-text-sub">AI · Cloud · Python · Engineering</div>
       </div>
     </div>
-    <nav class="nav-links">
-    <a href="#learn">What you’ll learn</a>
-    <a href="#playlist">YouTube series</a>
-    <a href="learning-hub.html">Learning hub</a>
-    <a href="#resources">Code & labs</a>
-    <a href="#contact">Contact</a>
-</nav>
-
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#tracks">Tracks</a>
+      <a href="#modules">Modules</a>
+      <a href="#labs">Labs</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
   <main>
@@ -348,19 +326,19 @@
       </div>
       <h1>Learning Hub for <span>AWS · Python · AI Cloud</span></h1>
       <p class="subtitle">
-        Use this page as your structured path through AliTechGrid content – whether you are a student,
-        instructor or working professional. Start at Module 1 and progress down, pairing each module with
-        matching labs and YouTube lessons.
+        Use this page as your structured path through AliTechGrid content — whether you are a student,
+        instructor or working professional. Start at Module&nbsp;1 and progress down, pairing each
+        module with matching labs and YouTube lessons.
       </p>
       <div class="hero-actions">
-        <a href="#modules" class="btn btn-primary">Start at Module 1</a>
-        <a href="#labs" class="btn">Skip to lab pack<span class="small">10 hands-on labs</span></a>
-        <a href="#roadmap" class="btn">View roadmap<span class="small">Beginner → Practitioner</span></a>
+        <a href="#modules" class="btn btn-primary">Start at Module&nbsp;1</a>
+        <a href="#labs" class="btn">Skip to 10-lab pack <small>(student & instructor)</small></a>
+        <a href="#roadmap" class="btn">View roadmap</a>
       </div>
     </section>
 
     <!-- TRACK OVERVIEW -->
-    <section>
+    <section id="tracks">
       <div class="section-header">
         <h2 class="section-title">Tracks at a glance</h2>
         <p class="section-sub">
@@ -374,36 +352,36 @@
           <div class="track">
             <h3>Python Programming</h3>
             <ul>
-              <li>Essentials 1 & 2 (syntax, data types, control flow)</li>
-              <li>Functions, modules, files & error handling</li>
-              <li>Object-oriented programming & simple projects</li>
-              <li>Network programming & automation basics</li>
+              <li>Essentials 1 &amp; 2 (syntax, data types, control flow)</li>
+              <li>Functions, modules, files &amp; error handling</li>
+              <li>Object-oriented programming &amp; simple projects</li>
+              <li>Network programming &amp; automation basics</li>
             </ul>
           </div>
           <div class="track">
             <h3>AWS Cloud Engineering</h3>
             <ul>
-              <li>IAM, security & account hygiene</li>
+              <li>IAM, security &amp; account hygiene</li>
               <li>Core services: EC2, S3, DynamoDB, CloudWatch</li>
-              <li>Serverless with Lambda & API Gateway</li>
-              <li>Infrastructure tagging, monitoring & cost awareness</li>
+              <li>Serverless with Lambda &amp; API Gateway</li>
+              <li>Monitoring, tagging &amp; cost awareness</li>
             </ul>
           </div>
           <div class="track">
-            <h3>AI & Automation on AWS</h3>
+            <h3>AI &amp; Automation on AWS</h3>
             <ul>
-              <li>Using boto3 to control AWS from Python</li>
-              <li>Text & image workloads with AI services</li>
+              <li>Using boto3 to drive AWS from Python</li>
+              <li>Text &amp; image workloads with AI services</li>
               <li>Lightweight AI-driven APIs using Lambda</li>
-              <li>Mini-project suitable for portfolios / demos</li>
+              <li>Mini-project suitable for demos &amp; portfolios</li>
             </ul>
           </div>
         </div>
 
         <div class="badge-row">
-          <div class="badge">Designed for higher-ed & industry</div>
+          <div class="badge">Designed for higher-ed &amp; industry</div>
           <div class="badge">Beginner friendly, practitioner focused</div>
-          <div class="badge">Instructor-ready modules & labs</div>
+          <div class="badge">Instructor-ready modules &amp; labs</div>
         </div>
       </div>
     </section>
@@ -418,10 +396,10 @@
         </p>
       </div>
 
-      <div class="module-grid">
-        <div class="card module">
+      <div class="grid-2">
+        <div class="card">
           <div class="card-tag">Module 1</div>
-          <h3>Cloud & IAM Foundations</h3>
+          <div class="card-title">Cloud & IAM Foundations</div>
           <small>Goal: understand accounts, regions and identity.</small>
           <ul>
             <li>AWS global infrastructure: regions, AZs, services.</li>
@@ -432,55 +410,55 @@
           </ul>
         </div>
 
-        <div class="card module">
+        <div class="card">
           <div class="card-tag">Module 2</div>
-          <h3>Python + boto3 Automation</h3>
+          <div class="card-title">Python + boto3 Automation</div>
           <small>Goal: replace console clicks with code.</small>
           <ul>
-            <li>Configuring credentials & profiles for boto3.</li>
+            <li>Configuring credentials &amp; profiles for boto3.</li>
             <li>Listing EC2 instances and S3 buckets from Python.</li>
             <li>Filtering by tag, region and state.</li>
-            <li>Hands-on: build a simple inventory script writing CSV.</li>
+            <li>Hands-on: build an inventory script writing CSV.</li>
             <li>Outcome: student can read AWS state programmatically.</li>
           </ul>
         </div>
 
-        <div class="card module">
+        <div class="card">
           <div class="card-tag">Module 3</div>
-          <h3>Serverless APIs with Lambda</h3>
+          <div class="card-title">Serverless APIs with Lambda</div>
           <small>Goal: deploy logic without managing servers.</small>
           <ul>
             <li>Lambda basics: runtime, handler, memory, timeout.</li>
             <li>Event-driven architecture intro.</li>
             <li>API Gateway HTTP APIs to expose Lambda.</li>
-            <li>Hands-on: build a JSON “hello” API & test via browser/Postman.</li>
+            <li>Hands-on: build a JSON “hello” API &amp; test via browser/Postman.</li>
             <li>Outcome: student can publish a simple serverless API.</li>
           </ul>
         </div>
 
-        <div class="card module">
+        <div class="card">
           <div class="card-tag">Module 4</div>
-          <h3>DynamoDB & Observability</h3>
+          <div class="card-title">DynamoDB & Observability</div>
           <small>Goal: store data and observe systems.</small>
           <ul>
             <li>DynamoDB tables, keys, read/write capacity.</li>
             <li>CRUD from Python / Lambda using boto3.</li>
-            <li>CloudWatch logs & metrics for Lambda and APIs.</li>
+            <li>CloudWatch logs &amp; metrics for Lambda and APIs.</li>
             <li>Hands-on: log requests into DynamoDB and build an error alarm.</li>
             <li>Outcome: student can persist data and troubleshoot failures.</li>
           </ul>
         </div>
 
-        <div class="card module">
+        <div class="card">
           <div class="card-tag">Module 5</div>
-          <h3>AI Workloads & Mini-Project</h3>
+          <div class="card-title">AI Workloads & Mini-Project</div>
           <small>Goal: connect AI services to real cloud flows.</small>
           <ul>
             <li>Overview: Comprehend, Rekognition, Transcribe, Bedrock.</li>
             <li>Hands-on: sentiment analysis or document classification job.</li>
             <li>Optional: simple chatbot or analysis API using Lambda.</li>
-            <li>Mini-project: combine IAM, Lambda, API Gateway, DynamoDB & AI.</li>
-            <li>Outcome: student has a portfolio-ready demo they can present.</li>
+            <li>Mini-project: combine IAM, Lambda, API Gateway, DynamoDB &amp; AI.</li>
+            <li>Outcome: student has a portfolio-ready demo.</li>
           </ul>
         </div>
       </div>
@@ -489,10 +467,10 @@
     <!-- LAB PACK -->
     <section id="labs">
       <div class="section-header">
-        <h2 class="section-title">10-Lab pack (student & instructor versions)</h2>
+        <h2 class="section-title">10-lab pack (student & instructor versions)</h2>
         <p class="section-sub">
-          These labs are designed to align with your videos and worksheets. Later you can link PDF / DOCX /
-          notebook versions directly from each item.
+          These labs are designed to align with your videos and worksheets.
+          Later you can link PDF / DOCX / notebook versions directly from each item.
         </p>
       </div>
 
@@ -504,7 +482,7 @@
           </li>
           <li>
             <strong>Lab 2 – First boto3 script</strong>
-            <span>Install boto3, configure credentials and list EC2 instances & S3 buckets.</span>
+            <span>Install boto3, configure credentials and list EC2 instances &amp; S3 buckets.</span>
           </li>
           <li>
             <strong>Lab 3 – Tagging automation</strong>
@@ -536,12 +514,12 @@
           </li>
           <li>
             <strong>Lab 10 – Mini-project integration</strong>
-            <span>Combine IAM, Lambda, API Gateway, DynamoDB and AI into a small end-to-end demo.</span>
+            <span>Combine IAM, Lambda, API Gateway, DynamoDB and AI into an end-to-end demo.</span>
           </li>
         </ol>
         <p style="font-size:11px;color:var(--muted);margin-top:8px;">
-          Future upgrade: for each lab, add links such as
-          “Download student PDF”, “Download instructor key” and “Open example code”.
+          Future upgrade: add links such as “Download student PDF”, “Download instructor key”
+          and “Open example code” for each lab.
         </p>
       </div>
     </section>
@@ -582,13 +560,13 @@
             <td>Deploy and consume simple serverless APIs.</td>
           </tr>
           <tr>
-            <td>Data & Observability</td>
+            <td>Data &amp; Observability</td>
             <td>Module 4</td>
             <td>Labs 6–7</td>
             <td>Persist data and monitor systems with CloudWatch.</td>
           </tr>
           <tr>
-            <td>AI & Project</td>
+            <td>AI &amp; Project</td>
             <td>Module 5</td>
             <td>Labs 8–10</td>
             <td>Apply AI services and build a portfolio-ready mini-project.</td>
@@ -602,8 +580,8 @@
       <div class="section-header">
         <h2 class="section-title">Using this hub in real courses</h2>
         <p class="section-sub">
-          You can embed this structure into Brightspace / Moodle, or share it directly with students as
-          their official roadmap for AliTechGrid training.
+          You can embed this structure into Brightspace / Moodle, or share it directly
+          with students as their official roadmap for AliTechGrid training.
         </p>
       </div>
 
@@ -627,7 +605,7 @@
 </div>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
